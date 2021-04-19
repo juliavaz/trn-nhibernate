@@ -38,5 +38,18 @@ namespace TrnNHibernate.Api.Controllers
             }
             return Ok("Cliente atualizado com sucesso!");
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult RecuperaClientePorId(int id)
+        {
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                _session.Get<Cliente>(id);
+
+                transaction.Commit();
+            }
+            return Ok($"Cliente recuperado com sucesso! \nID: {id}");
+        }
     }
 }
