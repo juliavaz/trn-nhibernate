@@ -21,7 +21,8 @@ namespace TrnNHibernate.Core.Infrastructure.Config
 
             _fluentConfiguration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(configuration.GetConnectionString("Default")))
-                .Mappings(x => x.FluentMappings.Add<ClienteMap>());
+                //.Mappings(x => x.FluentMappings.AddFromAssemblyOf<ClienteMap>())
+                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<ProdutoMap>());
         }
 
         public ISessionFactory BuildSessionFactory()
