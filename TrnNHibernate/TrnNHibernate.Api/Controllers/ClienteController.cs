@@ -24,5 +24,19 @@ namespace TrnNHibernate.Api.Controllers
             _session.Save(cliente);
             return Ok("Cliente gravado com sucesso!");
         }
+        
+        [HttpPost]
+        [Route("atualizar")]
+        public IActionResult AtualizarCliente([FromBody] ClienteRequest clienteRequest)
+        {
+            using (ITransaction transaction = _session.BeginTransaction()) { 
+                var clienteExistente = _session.Get<Cliente>(clienteRequest.Id);
+                clienteExistente.Atualizar(clienteRequest.Nome, clienteRequest.Email, clienteRequest.Senha);
+                _session.Update(clienteExistente);
+
+                transaction.Commit();
+            }
+            return Ok("Cliente atualizado com sucesso!");
+        }
     }
 }

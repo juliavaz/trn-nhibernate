@@ -16,10 +16,11 @@
         }
         protected Cliente() { }
 
-        public virtual void Atualizar(string nome, string email)
+        public virtual void Atualizar(string nome, string email, string senha)
         {
             Nome = nome;
             Email = email;
+            Senha = senha;
         }
 
     }
