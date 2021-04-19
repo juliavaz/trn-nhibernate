@@ -40,5 +40,17 @@ namespace TrnNHibernate.Api.Controllers
             return Ok("Produto atualizado com sucesso!");
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult RecuperaProdutoPorId(int id)
+        {
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                _session.Get<Produto>(id);
+
+                transaction.Commit();
+            }
+            return Ok($"Produto recuperado com sucesso! ID: {id}");
+        }
     }
 }
