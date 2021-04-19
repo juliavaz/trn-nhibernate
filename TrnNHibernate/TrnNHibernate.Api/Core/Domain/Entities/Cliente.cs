@@ -14,10 +14,8 @@
             Email = email;
             Senha = senha;
         }
-        public Cliente()
-        {
+        protected Cliente() { }
 
-        }
         public virtual void Atualizar(string nome, string email)
         {
             Nome = nome;

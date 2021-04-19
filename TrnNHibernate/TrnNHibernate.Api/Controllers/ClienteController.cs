@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NHibernate;
+using TrnNHibernate.Api.Core.Requests;
 using TrnNHibernate.Entidades;
 
 namespace TrnNHibernate.Api.Controllers
@@ -16,10 +17,12 @@ namespace TrnNHibernate.Api.Controllers
 
         [HttpPost]
         [Route("novo")]
-        public IActionResult NovoCliente([FromBody] Cliente cliente)
+        public IActionResult NovoCliente([FromBody] ClienteRequest clienteRequest)
         {
             //return View();
-            return Ok();
+            var cliente = new Cliente(clienteRequest.Nome, clienteRequest.Email, clienteRequest.Senha);
+            _session.Save(cliente);
+            return Ok("Cliente gravado com sucesso!");
         }
     }
 }
