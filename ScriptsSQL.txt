@@ -1,0 +1,17 @@
+/** Tabela Produtos  **/
+CREATE TABLE [dbo].[Produto] (
+    [ID_PRODUTO]              INT            IDENTITY(1,1) NOT NULL,
+    [NM_PRODUTO]              VARCHAR (55)   NOT NULL,
+    [NM_PRECO_UNITARIO]       DECIMAL        NOT NULL,
+    [NM_QUANTIDADE_ESTOQUE]   INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID_PRODUTO] ASC)
+);
+
+/** Tabela Clientes **/
+CREATE TABLE [dbo].[Cliente] (
+    [ID_CLIENTE] INT            IDENTITY (1, 1) NOT NULL,
+    [NM_CLIENTE] VARCHAR (100)  NULL,
+    [TXT_EMAIL]  VARCHAR (80)   NULL,
+    [TXT_SENHA]  VARCHAR (1024) NULL,
+    PRIMARY KEY CLUSTERED ([ID_CLIENTE] ASC)
+);
