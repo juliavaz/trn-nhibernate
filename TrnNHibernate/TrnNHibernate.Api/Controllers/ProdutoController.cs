@@ -23,8 +23,22 @@ namespace TrnNHibernate.Api.Controllers
             _session.Save(produto);
             return Ok("Produto gravado com sucesso!");
         }
+        
+        
+        [HttpPost]
+        [Route("atualizar")]
+        public IActionResult AtualizarProduto([FromBody] ProdutoRequest produtoRequest)
+        {
+            using (ITransaction transaction = _session.BeginTransaction())
+            {
+                var produtoExistente = _session.Get<Produto>(produtoRequest.Id);
+                produtoExistente.Atualizar(produtoRequest.Nome, produtoRequest.PrecoUnitario, produtoRequest.QuantidadeEstoque); 
+                _session.Update(produtoExistente);
 
-
+                transaction.Commit();
+            }
+            return Ok("Produto atualizado com sucesso!");
+        }
 
     }
 }
